@@ -1,4 +1,3 @@
-// App.jsx
 import React, { useState } from 'react';
 import CodeInput from './components/CodeInput';
 import AnalysisResult from './components/AnalysisResult';
@@ -6,14 +5,33 @@ import AnalysisResult from './components/AnalysisResult';
 function App() {
   const [code, setCode] = useState('');
   const [analysis, setAnalysis] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleAnalyze = async () => {
-    // Mocked analysis logic (replace with real API integration)
-    const mockAnalysis = {
-      timeComplexity: 'O(n^2)',
-      spaceComplexity: 'O(n)',
-    };
-    setAnalysis(mockAnalysis);
+    setLoading(true);
+    setError(null); // Reset previous errors
+
+    try {
+      const response = await fetch('http://localhost:10000/anal', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ code }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to analyze code');
+      }
+
+      const data = await response.json();
+      setAnalysis(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -30,17 +48,21 @@ function App() {
         </div>
       </nav>
 
-      {/* Hero Section
-      <header className="bg-slate-500-50 py-10 text-center">
-        <h2 className="text-4xl font-bold text-blue-600">Welcome to CompLexify</h2>
-        <p className="text-lg text-gray-700 mt-4">Analyze the time and space complexity of your code with ease.</p>
-      </header> */}
+     {/* Main Content */}
+<main className="bg-black text-white flex-grow flex flex-col items-center py-10">
+  <CodeInput 
+    code={code} 
+    setCode={setCode} 
+    onAnalyze={handleAnalyze} 
+  />
+  
+  {loading && <p className="text-white">Analyzing...</p>}
 
-      {/* Main Content */}
-      <main className="bg-black flex-grow flex flex-col items-center py-10">
-        <CodeInput code={code} setCode={setCode} onAnalyze={handleAnalyze} />
-        {analysis && <AnalysisResult analysis={analysis} />}
-      </main>
+  {error && <p className="text-red-500">{error}</p>}
+
+  {analysis && <AnalysisResult analysis={analysis} />}
+</main>
+
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-4 mt-10">
