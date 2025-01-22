@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth transitions for buttons and links */
+button, a {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Navigation bar styles */
+nav {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Hero section typography */
+header h2 {
+  letter-spacing: 1px;
+}
+
+header p {
+  font-size: 1.125rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+
+footer {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+footer p {
+  font-size: 0.875rem;
+  color: #cccccc;
+}
+
+
+a:hover {
+  text-decoration: underline;
+  color: #90cdf4;
+}
