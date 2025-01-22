@@ -83,7 +83,7 @@ const {
     },
   };
   
-  app.post('/anal', async (req, res) => {
+  app.post('/analyse', async (req, res) => {
     const { code } = req.body;
   
     if (!code) {
