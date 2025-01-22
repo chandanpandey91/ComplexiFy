@@ -21,23 +21,23 @@ function App() {
       {/* Navigation Bar */}
       <nav className="bg-blue-600 text-white py-4 shadow-md">
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">CompLexify</h1>
-          <ul className="flex space-x-4">
-            <li><a href="#" className="hover:underline">Home</a></li>
-            <li><a href="#" className="hover:underline">Features</a></li>
-            <li><a href="#" className="hover:underline">Contact</a></li>
+          <h1 className="text-2xl font-bold hover:text-blue-300 transition duration-300">CompLexify</h1>
+          <ul className="flex space-x-6">
+            <li><a href="#" className="hover:text-blue-300 transition duration-300">Home</a></li>
+            <li><a href="#" className="hover:text-blue-300 transition duration-300">Features</a></li>
+            <li><a href="#" className="hover:text-blue-300 transition duration-300">Contact</a></li>
           </ul>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <header className="bg-blue-50 py-10 text-center">
+      {/* Hero Section
+      <header className="bg-slate-500-50 py-10 text-center">
         <h2 className="text-4xl font-bold text-blue-600">Welcome to CompLexify</h2>
         <p className="text-lg text-gray-700 mt-4">Analyze the time and space complexity of your code with ease.</p>
-      </header>
+      </header> */}
 
       {/* Main Content */}
-      <main className="flex-grow flex flex-col items-center py-10">
+      <main className="bg-black flex-grow flex flex-col items-center py-10">
         <CodeInput code={code} setCode={setCode} onAnalyze={handleAnalyze} />
         {analysis && <AnalysisResult analysis={analysis} />}
       </main>

@@ -2,17 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Smooth transitions for buttons and links */
+
 button, a {
   transition: all 0.3s ease-in-out;
 }
 
-/* Navigation bar styles */
+
 nav {
   font-family: 'Roboto', sans-serif;
 }
 
-/* Hero section typography */
+
 header h2 {
   letter-spacing: 1px;
 }
