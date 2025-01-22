@@ -13,7 +13,7 @@ function App() {
     setError(null); // Reset previous errors
 
     try {
-      const response = await fetch('http://localhost:10000/anal', {
+      const response = await fetch(import.meta.env.VITE_API_URL+'/analyse', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
